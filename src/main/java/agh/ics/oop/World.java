@@ -23,10 +23,10 @@ public class World {
         for (String move : dir) {
 
             String choice = switch (move) {
-                case "f" -> "Forward";
-                case "b" -> "Backward";
-                case "l" -> "Left";
-                case "r" -> "Right";
+                case "f" -> "Zwierzak idzie do przodu";
+                case "b" -> "Zwierzak idzie do tyłu";
+                case "l" -> "Zwierzak skręca w lewo";
+                case "r" -> "Zwierzak skręca w prawo";
                 default -> null;
             };
 
