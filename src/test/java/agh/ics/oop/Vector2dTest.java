@@ -34,30 +34,31 @@ class Vector2dTest {
 
     @Test
     void testShouldKnowUpperRightVector() {
-        assertEquals(new Vector2d(1,2), vector1.upperRight(vector2));
-        assertEquals(new Vector2d(9,1), vector3.upperRight(vector4));
-        assertEquals(new Vector2d(2,6), vector5.upperRight(vector6));
+        assertEquals(new Vector2d(1, 2), vector1.upperRight(vector2));
+        assertEquals(new Vector2d(9, 1), vector3.upperRight(vector4));
+        assertEquals(new Vector2d(2, 6), vector5.upperRight(vector6));
     }
 
     @Test
-    void testShouldKnowLowerLeftVector() {;
-        assertEquals(new Vector2d(0,-1),vector1.lowerLeft(vector2));
-        assertEquals(new Vector2d(8,-1),vector3.lowerLeft(vector4));
-        assertEquals(new Vector2d(2,6),vector6.lowerLeft(vector5));
+    void testShouldKnowLowerLeftVector() {
+        ;
+        assertEquals(new Vector2d(0, -1), vector1.lowerLeft(vector2));
+        assertEquals(new Vector2d(8, -1), vector3.lowerLeft(vector4));
+        assertEquals(new Vector2d(2, 6), vector6.lowerLeft(vector5));
     }
 
     @Test
     void testShouldKnowAddedVector() {
-        assertEquals(new Vector2d(1,1),vector1.add(vector2));
-        assertEquals(new Vector2d(17,0),vector3.add(vector4));
-        assertEquals(new Vector2d(4,12),vector5.add(vector6));
+        assertEquals(new Vector2d(1, 1), vector1.add(vector2));
+        assertEquals(new Vector2d(17, 0), vector3.add(vector4));
+        assertEquals(new Vector2d(4, 12), vector5.add(vector6));
     }
 
     @Test
     void testShouldKnowSubtractedVector() {
-        assertEquals(new Vector2d(1,3),vector1.subtract(vector2));
-        assertEquals(new Vector2d(1,2),vector3.subtract(vector4));
-        assertEquals(new Vector2d(0,0),vector5.subtract(vector6));
+        assertEquals(new Vector2d(1, 3), vector1.subtract(vector2));
+        assertEquals(new Vector2d(1, 2), vector3.subtract(vector4));
+        assertEquals(new Vector2d(0, 0), vector5.subtract(vector6));
 
     }
 
@@ -68,8 +69,8 @@ class Vector2dTest {
 
     @Test
     void testShouldKnowOppositeVector() {
-        assertEquals(new Vector2d(-1,-2),vector1.opposite());
-        assertEquals(new Vector2d(0,1),vector2.opposite());
-        assertEquals(new Vector2d(-9,-1),vector3.opposite());
+        assertEquals(new Vector2d(-1, -2), vector1.opposite());
+        assertEquals(new Vector2d(0, 1), vector2.opposite());
+        assertEquals(new Vector2d(-9, -1), vector3.opposite());
     }
 }
