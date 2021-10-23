@@ -3,8 +3,8 @@ package agh.ics.oop;
 import java.util.Objects;
 
 public class Vector2d {
-    public final int x;
 
+    public final int x;
     public final int y;
 
 
@@ -30,23 +30,23 @@ public class Vector2d {
     }
 
     public Vector2d upperRight(Vector2d other) {
-        int biggerX = Math.max(x,other.x);
-        int biggerY = Math.max(y,other.y);
-        return new Vector2d(biggerX,biggerY);
+        int biggerX = Math.max(x, other.x);
+        int biggerY = Math.max(y, other.y);
+        return new Vector2d(biggerX, biggerY);
     }
 
     public Vector2d lowerLeft(Vector2d other) {
-        int smallerX = Math.max(x,other.x);
+        int smallerX = Math.max(x, other.x);
         int smallerY = Math.min(y, other.y);
-        return new Vector2d(smallerX,smallerY);
+        return new Vector2d(smallerX, smallerY);
     }
 
     public Vector2d add(Vector2d other) {
-        return new Vector2d(x+other.x,y+other.y);
+        return new Vector2d(x + other.x, y + other.y);
     }
 
     public Vector2d subtract(Vector2d other) {
-        return new Vector2d(Math.abs(x-other.x),Math.abs(y-other.y));
+        return new Vector2d(Math.abs(x - other.x), Math.abs(y - other.y));
     }
 
     @Override
@@ -63,8 +63,8 @@ public class Vector2d {
         return Objects.hash(x, y);
     }
 
-    public Vector2d opposite(){
-        return  new Vector2d(-x,-y);
+    public Vector2d opposite() {
+        return new Vector2d(-x, -y);
     }
 
 }
