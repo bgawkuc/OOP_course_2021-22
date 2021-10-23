@@ -10,25 +10,17 @@ class MapDirectionTest {
 
     @Test
     public void testShouldKnowNextDirection() {
-        assertEquals(north,west.next());
-        assertEquals(south,east.next());
-        assertEquals(east,north.next());
-        assertEquals(west,south.next());
+        assertEquals(north, west.next());
+        assertEquals(south, east.next());
+        assertEquals(east, north.next());
+        assertEquals(west, south.next());
     }
 
     @Test
     public void testShouldKnowPreviousDirection() {
-        assertEquals(north,east.previous());
-        assertEquals(south,west.previous());
-        assertEquals(east,south.previous());
-        assertEquals(west,north.previous());
+        assertEquals(north, east.previous());
+        assertEquals(south, west.previous());
+        assertEquals(east, south.previous());
+        assertEquals(west, north.previous());
     }
-
 }
-
-
-
-
-
-
-
