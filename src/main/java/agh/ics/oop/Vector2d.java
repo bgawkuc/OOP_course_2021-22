@@ -18,14 +18,10 @@ public class Vector2d {
     }
 
     public boolean precedes(Vector2d other) {
-        if (this == other) return true;
-        if (other == null || getClass() != other.getClass()) return false;
         return x <= other.x && y <= other.y;
     }
 
     public boolean folllows(Vector2d other) {
-        if (this == other) return true;
-        if (other == null || getClass() != other.getClass()) return false;
         return x >= other.x && y >= other.y;
     }
 
@@ -46,7 +42,7 @@ public class Vector2d {
     }
 
     public Vector2d subtract(Vector2d other) {
-        return new Vector2d(Math.abs(x - other.x), Math.abs(y - other.y));
+        return new Vector2d(x - other.x, y - other.y);
     }
 
     @Override
