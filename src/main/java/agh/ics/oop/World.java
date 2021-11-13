@@ -6,9 +6,8 @@ public class World {
 
     public static void main(String[] args) {
         Animal animal = new Animal();
-        animal.move(MoveDirection.RIGHT);
 
-        String[] array = new String[] {"b","a","f","f","b","f"};
+        String[] array = new String[] {"r","a","f","f","o","f"};
         ArrayList<MoveDirection> directions = OptionParser.parse(array);
         for (MoveDirection newMove: directions) {
             animal.move(newMove);

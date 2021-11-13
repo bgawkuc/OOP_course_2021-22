@@ -27,9 +27,9 @@ class Vector2dTest {
 
     @Test
     void testShouldKnowFollowsVector() {
-        assertTrue(vector1.folllows(vector2));
-        assertTrue(vector3.folllows(vector4));
-        assertTrue(vector6.folllows(vector5));
+        assertTrue(vector1.follows(vector2));
+        assertTrue(vector3.follows(vector4));
+        assertTrue(vector6.follows(vector5));
     }
 
     @Test
