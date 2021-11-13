@@ -1,18 +1,15 @@
 package agh.ics.oop;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class World {
 
     public static void main(String[] args) {
-        Animal animal = new Animal();
-
-        String[] array = new String[] {"r","a","f","f","o","f"};
-        ArrayList<MoveDirection> directions = OptionParser.parse(array);
-        for (MoveDirection newMove: directions) {
-            animal.move(newMove);
-            System.out.println(animal);
-        }
-
+        ArrayList<MoveDirection> directions =  OptionParser.parse(args);
+        IWorldMap map = new RectangularMap(10, 5);
+        ArrayList<Vector2d> positions = new ArrayList<>(Arrays.asList(new Vector2d(2,2), new Vector2d(3,4)));
+        IEngine engine = new SimulationEngine(directions, map, positions);
+        engine.run();
     }
 }
