@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public abstract class AbstractWorldMap implements IWorldMap{
     protected abstract Vector2d getVectorUpper();
     protected abstract Vector2d getVectorLower();
-    protected ArrayList<Animal> animalList = new ArrayList<>();
+    protected ArrayList<Animal> animalArrayList = new ArrayList<>();
 
     @Override
     public boolean canMoveTo(Vector2d position) {
@@ -20,14 +20,15 @@ public abstract class AbstractWorldMap implements IWorldMap{
     @Override
     public boolean place(Animal animal) {
         if (canMoveTo(animal.getStartVector())) {
-            animalList.add(animal);
+            animalArrayList.add(animal);
             return true;
         }
         return false;
     }
 
+    @Override
     public Object objectAt(Vector2d position) {
-        for (Animal animal: animalList) {
+        for (Animal animal: animalArrayList) {
             if (animal.getStartVector().equals(position)) {
                 return animal;
             }
@@ -40,5 +41,4 @@ public abstract class AbstractWorldMap implements IWorldMap{
         MapVisualiser mapVisualiser = new MapVisualiser(this);
         return mapVisualiser.draw(getVectorLower(),getVectorUpper());
     }
-
 }

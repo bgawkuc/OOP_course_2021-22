@@ -43,12 +43,12 @@ public class GrassField extends AbstractWorldMap {
 
     @Override
     public Vector2d getVectorLower() {
-        if (animalList.size() == 0 && grassArrayList.size() == 0) {
+        if (animalArrayList.size() == 0 && grassArrayList.size() == 0) {
             return new Vector2d(0,0);
         }
         Vector2d minVector = new Vector2d(INF_POSITIVE,INF_POSITIVE);
 
-        for (Animal animal : animalList) {
+        for (Animal animal : animalArrayList) {
             minVector = minVector.lowerLeft(animal.getStartVector());
         }
         for (Grass grass : grassArrayList) {
@@ -59,11 +59,11 @@ public class GrassField extends AbstractWorldMap {
 
     @Override
     public Vector2d getVectorUpper() {
-        if (animalList.size() == 0 && grassArrayList.size() == 0) {
-            return new Vector2d(10,10);
+        if (animalArrayList.size() == 0 && grassArrayList.size() == 0) {
+            return new Vector2d(0,0);
         }
         Vector2d maxVector = new Vector2d(INF_NEGATIVE,INF_NEGATIVE);
-        for (Animal animal: animalList) {
+        for (Animal animal: animalArrayList) {
             maxVector = maxVector.upperRight(animal.getStartVector());
         }
         for (Grass grass: grassArrayList) {
