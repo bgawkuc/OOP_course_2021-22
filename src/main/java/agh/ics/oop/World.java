@@ -7,9 +7,10 @@ public class World {
 
     public static void main(String[] args) {
         ArrayList<MoveDirection> directions =  OptionParser.parse(args);
-        IWorldMap map = new RectangularMap(10, 5);
+        GrassField newGrassField = new GrassField(10);
         ArrayList<Vector2d> positions = new ArrayList<>(Arrays.asList(new Vector2d(2,2), new Vector2d(3,4)));
-        IEngine engine = new SimulationEngine(directions, map, positions);
+        IEngine engine = new SimulationEngine(directions, newGrassField, positions);
         engine.run();
+        System.out.println(newGrassField);
     }
 }

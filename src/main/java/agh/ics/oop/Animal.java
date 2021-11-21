@@ -2,13 +2,13 @@ package agh.ics.oop;
 
 public class Animal {
     private MapDirection startDirection = MapDirection.NORTH;
-    private Vector2d startVector = new Vector2d(2,2);
+    private Vector2d position = new Vector2d(2,2);
     private static final Vector2d MAX_VECTOR = new Vector2d(4,4);
     private static final Vector2d MIN_VECTOR = new Vector2d(0,0);
     private final IWorldMap map;
 
     public Animal() {
-        this.startVector = new Vector2d(2, 2);
+        this.position = new Vector2d(2, 2);
         this.map = new RectangularMap(4, 4);
     }
 
@@ -18,7 +18,7 @@ public class Animal {
 
     public Animal(IWorldMap map, Vector2d initialPosition) {
         this(map);
-        this.startVector = initialPosition;
+        this.position = initialPosition;
     }
 
     public MapDirection getStartDirection() {
@@ -26,7 +26,7 @@ public class Animal {
     }
 
     public Vector2d getStartVector() {
-        return startVector;
+        return position;
     }
 
     @Override
@@ -51,14 +51,14 @@ public class Animal {
         }
         else {
             if (direction == MoveDirection.FORWARD) {
-                newVector = startVector.add(moveVector);
+                newVector = position.add(moveVector);
             }
             else {
-                newVector = startVector.subtract(moveVector);
+                newVector = position.subtract(moveVector);
             }
 
             if (map.canMoveTo(newVector)) {
-                startVector = newVector;}
+                position = newVector;}
         }
     }
 }

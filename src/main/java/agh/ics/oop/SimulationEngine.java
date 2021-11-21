@@ -27,12 +27,10 @@ public class SimulationEngine implements IEngine{
         int idx = 0;
 
         for (MoveDirection direction : moveDirections) {
-            if (idx >= animalList.size()) {
-                idx %= animalList.size();
-            }
+            System.out.println(map);
+            idx %= animalList.size();
             animalList.get(idx).move(direction);
             idx += 1;
-            System.out.println(map);
         }
     }
 }

@@ -32,7 +32,7 @@ public class Vector2d {
     }
 
     public Vector2d lowerLeft(Vector2d other) {
-        int smallerX = Math.max(x, other.x);
+        int smallerX = Math.min(x, other.x);
         int smallerY = Math.min(y, other.y);
         return new Vector2d(smallerX, smallerY);
     }
