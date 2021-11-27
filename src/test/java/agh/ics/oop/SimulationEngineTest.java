@@ -8,6 +8,8 @@ import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.*;
 
 class SimulationEngineTest {
+    //    dla zmian wykonanych w lab5 wszystkie testy nadal są zaliczone
+
     String[] arg = new String[] {"f","b","r","l","f","f","r","r","f","f","f","f","f","f","f","f"};
     ArrayList<MoveDirection> directions =  OptionParser.parse(arg);
     IWorldMap map = new RectangularMap(10, 5);

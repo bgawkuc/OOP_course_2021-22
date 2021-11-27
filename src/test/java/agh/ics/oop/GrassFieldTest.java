@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class GrassFieldTest {
+//    dla zmian wykonanych w lab5 wszystkie testy nadal są zaliczone
 
     @Test
     void testShouldKnowIfPlaceIsOccupied() {
@@ -60,6 +61,4 @@ class GrassFieldTest {
         }
         assertEquals(cnt,4);
     }
-
-
 }
