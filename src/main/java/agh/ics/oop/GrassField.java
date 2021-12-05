@@ -1,32 +1,50 @@
 package agh.ics.oop;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class GrassField extends AbstractWorldMap {
-    private static final int MIN = 0;
-    private static final int INF_POSITIVE = (int) Double.POSITIVE_INFINITY;
-    private static final int INF_NEGATIVE = (int) Double.NEGATIVE_INFINITY;
-    protected Map<Vector2d,Grass> grassMap = new LinkedHashMap<>();
+    protected Map<Vector2d, Grass> grassMap = new LinkedHashMap<>();
+    private final MapBoundary mapBoundary;
+    int max;
 
     public GrassField(int grassNumber) {
-        int max = (int) Math.floor(Math.sqrt(10 * grassNumber));
+        max = (int) Math.floor(Math.sqrt(10 * grassNumber));
+        this.mapBoundary = new MapBoundary();
+        addGrass(grassNumber);
+    }
 
-        Vector2d grassVector = generateGrassVector(MIN, max);
-        for (int i = 0; i < grassNumber; i++) {
-            while (isOccupied(grassVector)) {
-                grassVector = generateGrassVector(MIN, max);
-            }
-            grassMap.put(grassVector,new Grass(grassVector));
+    private void addGrass(int grassNumber) {
+        ArrayList<Integer> free = freePositions();
+
+        while (free.size() > 0 && grassNumber > 0) {
+            int randomIdx = generateRandomInt(free.size()/2);
+            Vector2d grassVector = new Vector2d(free.get(randomIdx*2), free.get(randomIdx*2+1));
+            free.remove(randomIdx*2+1);
+            free.remove(randomIdx*2);
+            grassMap.put(grassVector, new Grass(grassVector));
+            mapBoundary.addVector(grassVector);
+            grassNumber -= 1;
         }
     }
 
-    public int generateRandomNumber(int min, int max) {
-        return (int) ((Math.random() * (max - min)));
+        private ArrayList<Integer> freePositions() {
+        ArrayList<Integer> free = new ArrayList<>();
+
+        for (int i = 0; i <= max; i++) {
+            for (int j = 0; j <= max; j++) {
+                if (objectAt(new Vector2d(i, j)) == null) {
+                    free.add(i);
+                    free.add(j);
+                }
+            }
+        }
+        return free;
     }
 
-    public Vector2d generateGrassVector(int minField, int maxField) {
-        return new Vector2d(generateRandomNumber(minField, maxField), generateRandomNumber(minField, maxField));
+    private int generateRandomInt(int max) {
+        return (int) ((Math.random() * max));
     }
 
     @Override
@@ -34,7 +52,7 @@ public class GrassField extends AbstractWorldMap {
         if (super.objectAt(position) != null) {
             return super.objectAt(position);
         }
-        for (Grass grass: grassMap.values()) {
+        for (Grass grass : grassMap.values()) {
             if (grass.getPosition().equals(position)) {
                 return grass;
             }
@@ -42,34 +60,37 @@ public class GrassField extends AbstractWorldMap {
         return null;
     }
 
+//    zwierzak 'zjada' trawę i na jej miesce musi wyrosnąć nowa
     @Override
-    public Vector2d getVectorLower() {
-        if (animalMap.size() == 0 && grassMap.size() == 0) {
-            return new Vector2d(0,0);
-        }
-        Vector2d minVector = new Vector2d(INF_POSITIVE,INF_POSITIVE);
+    public boolean place(Animal animal) {
+        Vector2d positionVector = animal.getPosition();
 
-        for (Animal animal : animalMap.values()) {
-            minVector = minVector.lowerLeft(animal.getStartVector());
+        if (objectAt(positionVector) == null || objectAt(positionVector) instanceof Grass) {
+            if (objectAt(positionVector) instanceof Grass) {
+                addGrass(1);
+            }
+            animalMap.put(positionVector, animal);
+            animal.addObserver(this);
+            this.mapBoundary.addVector(animal.getPosition());
+            return true;
         }
-        for (Grass grass : grassMap.values()) {
-            minVector = minVector.lowerLeft(grass.getPosition());
-        }
-        return minVector;
+        throw new IllegalArgumentException(positionVector + " is occupied");
     }
 
     @Override
-    public Vector2d getVectorUpper() {
-        if (animalMap.size() == 0 && grassMap.size() == 0) {
-            return new Vector2d(0,0);
-        }
-        Vector2d maxVector = new Vector2d(INF_NEGATIVE,INF_NEGATIVE);
-        for (Animal animal: animalMap.values()) {
-            maxVector = maxVector.upperRight(animal.getStartVector());
-        }
-        for (Grass grass: grassMap.values()) {
-            maxVector = maxVector.upperRight(grass.getPosition());
-        }
-        return maxVector;
+    public Vector2d getLowerCorner() {
+        return mapBoundary.getLowerCorner();
+    }
+
+    @Override
+    public Vector2d getUpperCorner() {
+        return mapBoundary.getUpperCorner();
+    }
+
+    @Override
+    public void positionChanged(Vector2d oldPosition, Vector2d newPosition) {
+        super.positionChanged(oldPosition, newPosition);
+        mapBoundary.removeVector(oldPosition);
+        mapBoundary.addVector(newPosition);
     }
 }

@@ -12,18 +12,18 @@ public class RectangularMap extends AbstractWorldMap {
         this.height = height > 0 ? height: MAX_VAl;
     }
     @Override
-    public Vector2d getVectorUpper(){
+    public Vector2d getUpperCorner(){
         return new Vector2d(width,height);
     }
 
     @Override
-    public Vector2d getVectorLower(){
+    public Vector2d getLowerCorner(){
         return new Vector2d(MIN_VAl,MIN_VAl);
     }
 
     @Override
     public boolean canMoveTo(Vector2d position) {
-        return super.canMoveTo(position) && getVectorLower().precedes(position) && position.precedes(getVectorUpper());
+        return super.canMoveTo(position) && getLowerCorner().precedes(position) && position.precedes(getUpperCorner());
     }
 
 

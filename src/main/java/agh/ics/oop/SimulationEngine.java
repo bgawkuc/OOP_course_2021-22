@@ -13,8 +13,8 @@ public class SimulationEngine implements IEngine{
 
         for (Vector2d vector2d: vector2dList) {
             Animal animal = new Animal(map,vector2d);
-            if (map.place(animal)) {
-                animalList.add(animal);}
+            map.place(animal);
+            animalList.add(animal);
         }
     }
 
@@ -28,9 +28,9 @@ public class SimulationEngine implements IEngine{
         for (MoveDirection direction : moveDirections) {
             System.out.println(map);
             idx %= animalList.size();
-            System.out.println("old position: " + animalList.get(idx).getStartVector());
+            System.out.println("old position: " + animalList.get(idx).getPosition());
             animalList.get(idx).move(direction);
-            System.out.println("new position: " + animalList.get(idx).getStartVector());
+            System.out.println("new position: " + animalList.get(idx).getPosition());
             idx += 1;
         }
     }

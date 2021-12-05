@@ -26,9 +26,9 @@ public class RectangularMapTest {
         Animal animal1 = new Animal(rectangularMap, new Vector2d(4,5));
         Animal animal2 = new Animal(rectangularMap, new Vector2d(3,7));
         Animal animal3 = new Animal(rectangularMap, new Vector2d(3,7));
-        assertFalse(rectangularMap.place(animal1));
+        assertThrows(IllegalArgumentException.class, () -> rectangularMap.place(animal1));
         assertTrue(rectangularMap.place(animal2));
-        assertFalse(rectangularMap.place(animal3));
+        assertThrows(IllegalArgumentException.class, () -> rectangularMap.place(animal3));
     }
 
     @Test

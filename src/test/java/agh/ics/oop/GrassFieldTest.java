@@ -28,7 +28,7 @@ class GrassFieldTest {
         Animal animal2 = new Animal(grassField,new Vector2d(1,9));
         Animal animal3 = new Animal(grassField,new Vector2d(2,9));
         assertTrue(grassField.place(animal1));
-        assertFalse(grassField.place(animal2));
+        assertThrows(IllegalArgumentException.class, () -> grassField.place(animal2));
         assertTrue(grassField.place(animal3));
     }
 
@@ -43,8 +43,8 @@ class GrassFieldTest {
         grassField.place(animal3);
         Vector2d lowerVector = new Vector2d(0,3);
         Vector2d upperVector = new Vector2d(2,6);
-        assertEquals(lowerVector,grassField.getVectorLower());
-        assertEquals(upperVector,grassField.getVectorUpper());
+        assertEquals(lowerVector,grassField.getLowerCorner());
+        assertEquals(upperVector,grassField.getUpperCorner());
     }
 
     @Test

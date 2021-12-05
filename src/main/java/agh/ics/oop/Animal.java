@@ -2,31 +2,36 @@ package agh.ics.oop;
 
 import java.util.ArrayList;
 
-public class Animal{
+public class Animal {
     private MapDirection startDirection = MapDirection.NORTH;
     private Vector2d position = new Vector2d(2,2);
     private final IWorldMap map;
-    private final ArrayList<IPositionChangeObserver> observerArrayList = new ArrayList<>();
+    private ArrayList<IPositionChangeObserver> observerArrayList;
 
     public Animal() {
         this.position = new Vector2d(2, 2);
         this.map = new RectangularMap(4, 4);
+        this.observerArrayList = new ArrayList<>();
     }
 
     public Animal(IWorldMap map) {
         this.map = map;
+        this.observerArrayList = new ArrayList<>();
+
     }
 
     public Animal(IWorldMap map, Vector2d initialPosition) {
         this(map);
         this.position = initialPosition;
+        this.observerArrayList = new ArrayList<>();
+
     }
 
     public MapDirection getStartDirection() {
         return startDirection;
     }
 
-    public Vector2d getStartVector() {
+    public Vector2d getPosition() {
         return position;
     }
 
