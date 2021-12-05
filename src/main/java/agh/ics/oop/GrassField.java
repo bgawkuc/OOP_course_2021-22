@@ -29,7 +29,7 @@ public class GrassField extends AbstractWorldMap {
         }
     }
 
-        private ArrayList<Integer> freePositions() {
+    private ArrayList<Integer> freePositions() {
         ArrayList<Integer> free = new ArrayList<>();
 
         for (int i = 0; i <= max; i++) {
